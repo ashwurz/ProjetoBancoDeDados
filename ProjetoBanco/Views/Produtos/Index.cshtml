@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProjetoBanco.Models.Produtos>
+
+@{
+    ViewBag.Title = "Produtos";
+}
+
+<h2>Itens da Tabela de Produdos</h2>
+
+<p>
+    @Html.ActionLink("Criar novo Produto", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Produtos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tempo_Producao_Minutos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Materia_Principal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome_Materia_Principal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lucro_Producao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Produtos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tempo_Producao_Minutos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Materia_Principal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome_Materia_Principal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lucro_Producao)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.ID_Produtos, nome= item.Nome }) |
+            @Html.ActionLink("Detalhes", "Details", new { id = item.ID_Produtos, nome = item.Nome }) |
+            @Html.ActionLink("Deletar", "Delete", new { id = item.ID_Produtos, nome = item.Nome })
+        </td>
+    </tr>
+}
+
+</table>

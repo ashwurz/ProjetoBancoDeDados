@@ -1,0 +1,57 @@
+﻿@model ProjetoBanco.Models.Estoque_Produtos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Deletar</h2>
+
+<h3>Você tem certeza que quer deletar esse item do Estoque de Produtos?</h3>
+<div>
+    <h4>Estoque_Produtos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sequencia_Estoque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sequencia_Estoque)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Produto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Produto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantidade)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Back", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ProjetoBanco.Models.Materia_Prima>
+
+@{
+    ViewBag.Title = "Materia Prima";
+}
+
+<h2>Itens da tabela de Materia Prima</h2>
+
+<p>
+    @Html.ActionLink("Criar nova Materia Prima", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Materia_Prima)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Custo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Materia_Prima)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Custo)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.ID_Materia_Prima, nome = item.Nome }) |
+            @Html.ActionLink("Detalhes", "Details", new { id = item.ID_Materia_Prima, nome = item.Nome }) |
+            @Html.ActionLink("Deletar", "Delete", new { id = item.ID_Materia_Prima, nome = item.Nome })
+        </td>
+    </tr>
+}
+
+</table>

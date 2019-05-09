@@ -1,25 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-
 namespace ProjetoBanco.Models
 {
-    public partial class Produtos
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public class Produtos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Produtos()
         {
-            EstoqueProdutos = new HashSet<EstoqueProdutos>();
-            ProdutosFinalizados = new HashSet<ProdutosFinalizados>();
+            Estoque_Produtos = new HashSet<Estoque_Produtos>();
+            Produtos_Finalizados = new HashSet<Produtos_Finalizados>();
         }
 
-        public int IdProdutos { get; set; }
-        public string Nome { get; set; }
-        public int TempoProducaoMinutos { get; set; }
-        public int IdMateriaPrincipal { get; set; }
-        public string NomeMateriaPrincipal { get; set; }
-        public string LucroProducao { get; set; }
+        [Key]
+        [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ID_Produtos { get; set; }
 
-        public virtual MateriaPrima MateriaPrima { get; set; }
-        public virtual ICollection<EstoqueProdutos> EstoqueProdutos { get; set; }
-        public virtual ICollection<ProdutosFinalizados> ProdutosFinalizados { get; set; }
+        [Key]
+        [Column(Order = 1)]
+        [StringLength(30)]
+        public string Nome { get; set; }
+
+        public int Tempo_Producao_Minutos { get; set; }
+
+        public int ID_Materia_Principal { get; set; }
+
+        [Required]
+        [StringLength(30)]
+        public string Nome_Materia_Principal { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string Lucro_Producao { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Estoque_Produtos> Estoque_Produtos { get; set; }
+
+        public virtual Materia_Prima Materia_Prima { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Produtos_Finalizados> Produtos_Finalizados { get; set; }
     }
 }

@@ -1,0 +1,49 @@
+﻿@model ProjetoBanco.Models.Materia_Prima
+
+@{
+    ViewBag.Title = "Deletar";
+}
+
+<h2>Delete</h2>
+
+<h3>Você tem certeza que quer deletar essa Materia Prima?</h3>
+<div>
+    <h4>Materia_Prima</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Materia_Prima)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Materia_Prima)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Custo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Custo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Back", "Index")
+        </div>
+    }
+</div>

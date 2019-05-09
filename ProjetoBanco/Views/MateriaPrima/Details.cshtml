@@ -1,0 +1,43 @@
+﻿@model ProjetoBanco.Models.Materia_Prima
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes da Materia Prima</h2>
+
+<div>
+    <h4>Materia_Prima</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Materia_Prima)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Materia_Prima)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Custo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Custo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID_Materia_Prima, nome = Model.Nome }) |
+    @Html.ActionLink("Back", "Index")
+</p>
