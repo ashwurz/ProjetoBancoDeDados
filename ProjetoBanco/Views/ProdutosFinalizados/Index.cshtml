@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ProjetoBanco.Models.Produtos_Finalizados>
+
+@{
+    ViewBag.Title = "ProdutosFinalizados";
+}
+
+<h2>Itens na tabela de Produtos Finalizados</h2>
+
+<p>
+    @Html.ActionLink("Criar Novo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Sequencia_Producao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Produto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_Producao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sequencia_Producao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Produto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_Producao)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.Sequencia_Producao }) |
+            @Html.ActionLink("Detalhes", "Details", new { id = item.Sequencia_Producao }) |
+            @Html.ActionLink("Deletar", "Delete", new { id = item.Sequencia_Producao })
+        </td>
+    </tr>
+}
+
+</table>

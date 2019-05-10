@@ -197,6 +197,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MateriaPrimaController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
+    <Compile Include="Controllers\ProdutosFinalizadosController.cs" />
     <Compile Include="Models\Estoque_Materia_Prima.cs" />
     <Compile Include="Models\Estoque_Produtos.cs" />
     <Compile Include="Global.asax.cs">
@@ -266,6 +267,11 @@
     <Content Include="Views\EstoqueProdutos\Details.cshtml" />
     <Content Include="Views\EstoqueProdutos\Edit.cshtml" />
     <Content Include="Views\EstoqueProdutos\Index.cshtml" />
+    <Content Include="Views\ProdutosFinalizados\Create.cshtml" />
+    <Content Include="Views\ProdutosFinalizados\Delete.cshtml" />
+    <Content Include="Views\ProdutosFinalizados\Details.cshtml" />
+    <Content Include="Views\ProdutosFinalizados\Edit.cshtml" />
+    <Content Include="Views\ProdutosFinalizados\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,50 @@
+﻿@model ProjetoBanco.Models.Produtos_Finalizados
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Produtos_Finalizados</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sequencia_Producao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sequencia_Producao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Produto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Produto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_Producao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_Producao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Sequencia_Producao }) |
+    @Html.ActionLink("Back", "Index")
+</p>
