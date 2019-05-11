@@ -192,14 +192,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\EstoqueMateriaPrimaController.cs" />
-    <Compile Include="Controllers\EstoqueProdutosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MateriaPrimaController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Controllers\ProdutosFinalizadosController.cs" />
-    <Compile Include="Models\Estoque_Materia_Prima.cs" />
-    <Compile Include="Models\Estoque_Produtos.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -257,16 +253,6 @@
     <Content Include="Views\MateriaPrima\Details.cshtml" />
     <Content Include="Views\MateriaPrima\Edit.cshtml" />
     <Content Include="Views\MateriaPrima\Index.cshtml" />
-    <Content Include="Views\EstoqueMateriaPrima\Create.cshtml" />
-    <Content Include="Views\EstoqueMateriaPrima\Delete.cshtml" />
-    <Content Include="Views\EstoqueMateriaPrima\Details.cshtml" />
-    <Content Include="Views\EstoqueMateriaPrima\Edit.cshtml" />
-    <Content Include="Views\EstoqueMateriaPrima\Index.cshtml" />
-    <Content Include="Views\EstoqueProdutos\Create.cshtml" />
-    <Content Include="Views\EstoqueProdutos\Delete.cshtml" />
-    <Content Include="Views\EstoqueProdutos\Details.cshtml" />
-    <Content Include="Views\EstoqueProdutos\Edit.cshtml" />
-    <Content Include="Views\EstoqueProdutos\Index.cshtml" />
     <Content Include="Views\ProdutosFinalizados\Create.cshtml" />
     <Content Include="Views\ProdutosFinalizados\Delete.cshtml" />
     <Content Include="Views\ProdutosFinalizados\Details.cshtml" />

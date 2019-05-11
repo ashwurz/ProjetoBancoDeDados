@@ -40,7 +40,7 @@ namespace ProjetoBanco.Controllers
         // GET: ProdutosFinalizados/Create
         public ActionResult Create()
         {
-            ViewBag.ID_Produto = new SelectList(db.Produtos, "ID_Produtos", "Nome_Materia_Principal");
+            //ViewBag.ID_Produto = new SelectList(db.Produtos, "ID_Produtos", "Nome_Materia_Principal");
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace ProjetoBanco.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Sequencia_Producao,ID_Produto,Nome,Data_Producao")] Produtos_Finalizados produtos_Finalizados)
+        public ActionResult Create([Bind(Include = "Sequencia_Producao,Nome,Data_Producao")] Produtos_Finalizados produtos_Finalizados)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +58,7 @@ namespace ProjetoBanco.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID_Produto = new SelectList(db.Produtos, "ID_Produtos", "Nome_Materia_Principal", produtos_Finalizados.ID_Produto);
+            //ViewBag.ID_Produto = new SelectList(db.Produtos, "ID_Produtos", "Nome_Materia_Principal", produtos_Finalizados.ID_Produto);
             return View(produtos_Finalizados);
         }
 
@@ -74,7 +74,7 @@ namespace ProjetoBanco.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ID_Produto = new SelectList(db.Produtos, "ID_Produtos", "Nome_Materia_Principal", produtos_Finalizados.ID_Produto);
+            //ViewBag.ID_Produto = new SelectList(db.Produtos, "ID_Produtos", "Nome_Materia_Principal", produtos_Finalizados.ID_Produto);
             return View(produtos_Finalizados);
         }
 
@@ -83,7 +83,7 @@ namespace ProjetoBanco.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Sequencia_Producao,ID_Produto,Nome,Data_Producao")] Produtos_Finalizados produtos_Finalizados)
+        public ActionResult Edit([Bind(Include = "Sequencia_Producao,Nome,Data_Producao")] Produtos_Finalizados produtos_Finalizados)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace ProjetoBanco.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID_Produto = new SelectList(db.Produtos, "ID_Produtos", "Nome_Materia_Principal", produtos_Finalizados.ID_Produto);
+            //ViewBag.ID_Produto = new SelectList(db.Produtos, "ID_Produtos", "Nome_Materia_Principal", produtos_Finalizados.ID_Produto);
             return View(produtos_Finalizados);
         }
 

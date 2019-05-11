@@ -23,13 +23,13 @@ namespace ProjetoBanco.Controllers
         }
 
         // GET: Produtos/Details/5
-        public ActionResult Details(int? id, string nome)
+        public ActionResult Details(string nome)
         {
-            if (id == null || nome == null)
+            if (nome == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produtos produtos = db.Produtos.Find(id, nome);
+            Produtos produtos = db.Produtos.Find(nome);
             if (produtos == null)
             {
                 return HttpNotFound();
@@ -40,7 +40,7 @@ namespace ProjetoBanco.Controllers
         // GET: Produtos/Create
         public ActionResult Create()
         {
-            ViewBag.ID_Materia_Principal = new SelectList(db.Materia_Prima, "ID_Materia_Prima", "Custo");
+            // ViewBag.ID_Materia_Principal = new SelectList(db.Materia_Prima, "ID_Materia_Prima", "Custo");
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace ProjetoBanco.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_Produtos,Nome,Tempo_Producao_Minutos,ID_Materia_Principal,Nome_Materia_Principal,Lucro_Producao")] Produtos produtos)
+        public ActionResult Create([Bind(Include = "Nome,Tempo_Producao_Minutos,Nome_Materia_Principal,Lucro_Producao,Quantidade_Estoque")] Produtos produtos)
         {
             if (ModelState.IsValid)
             {
@@ -58,23 +58,23 @@ namespace ProjetoBanco.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID_Materia_Principal = new SelectList(db.Materia_Prima, "ID_Materia_Prima", "Custo", produtos.ID_Materia_Principal);
+            //ViewBag.ID_Materia_Principal = new SelectList(db.Materia_Prima, "ID_Materia_Prima", "Custo", produtos.ID_Materia_Principal);
             return View(produtos);
         }
 
         // GET: Produtos/Edit/5
-        public ActionResult Edit(int? id, string nome)
+        public ActionResult Edit(string nome)
         {
-            if (id == null || nome == null)
+            if (nome == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produtos produtos = db.Produtos.Find(id, nome);
+            Produtos produtos = db.Produtos.Find(nome);
             if (produtos == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ID_Materia_Principal = new SelectList(db.Materia_Prima, "ID_Materia_Prima", "Custo", produtos.ID_Materia_Principal);
+            //ViewBag.ID_Materia_Principal = new SelectList(db.Materia_Prima, "ID_Materia_Prima", "Custo", produtos.ID_Materia_Principal);
             return View(produtos);
         }
 
@@ -83,7 +83,7 @@ namespace ProjetoBanco.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_Produtos,Nome,Tempo_Producao_Minutos,ID_Materia_Principal,Nome_Materia_Principal,Lucro_Producao")] Produtos produtos)
+        public ActionResult Edit([Bind(Include = "Nome,Tempo_Producao_Minutos,Nome_Materia_Principal,Lucro_Producao,Quantidade_Estoque")] Produtos produtos)
         {
             if (ModelState.IsValid)
             {
@@ -91,18 +91,18 @@ namespace ProjetoBanco.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID_Materia_Principal = new SelectList(db.Materia_Prima, "ID_Materia_Prima", "Custo", produtos.ID_Materia_Principal);
+            //ViewBag.ID_Materia_Principal = new SelectList(db.Materia_Prima, "ID_Materia_Prima", "Custo", produtos.ID_Materia_Principal);
             return View(produtos);
         }
 
         // GET: Produtos/Delete/5
-        public ActionResult Delete(int? id, string nome)
+        public ActionResult Delete(string nome)
         {
-            if (id == null || nome == null)
+            if (nome == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produtos produtos = db.Produtos.Find(id, nome);
+            Produtos produtos = db.Produtos.Find(nome);
             if (produtos == null)
             {
                 return HttpNotFound();
@@ -113,9 +113,9 @@ namespace ProjetoBanco.Controllers
         // POST: Produtos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id, string nome)
+        public ActionResult DeleteConfirmed(string nome)
         {
-            Produtos produtos = db.Produtos.Find(id,nome);
+            Produtos produtos = db.Produtos.Find(nome);
             db.Produtos.Remove(produtos);
             db.SaveChanges();
             return RedirectToAction("Index");

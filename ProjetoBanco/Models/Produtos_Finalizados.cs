@@ -11,8 +11,6 @@ namespace ProjetoBanco.Models
         [Key]
         public int Sequencia_Producao { get; set; }
 
-        public int ID_Produto { get; set; }
-
         [Required]
         [StringLength(30)]
         public string Nome { get; set; }
