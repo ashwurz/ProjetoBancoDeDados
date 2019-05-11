@@ -11,14 +11,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ID_Produtos)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ID_Produtos)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
 
@@ -32,14 +24,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Tempo_Producao_Minutos)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ID_Materia_Principal)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ID_Materia_Principal)
         </dd>
 
         <dt>
@@ -58,9 +42,16 @@
             @Html.DisplayFor(model => model.Lucro_Producao)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantidade_Estoque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantidade_Estoque)
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.ID_Produtos, nome = Model.Nome}) |
+    @Html.ActionLink("Editar", "Edit", new {nome = Model.Nome}) |
     @Html.ActionLink("Back", "Index")
 </p>
