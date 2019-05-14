@@ -221,3 +221,13 @@ C:\Users\Helmuth\source\repos\ProjetoBanco\ProjetoBanco\obj\Debug\ProjetoBanco.c
 C:\Users\Helmuth\source\repos\ProjetoBanco\ProjetoBanco\obj\Debug\ProjetoBanco.csproj.CopyComplete
 C:\Users\Helmuth\source\repos\ProjetoBanco\ProjetoBanco\obj\Debug\ProjetoBanco.dll
 C:\Users\Helmuth\source\repos\ProjetoBanco\ProjetoBanco\obj\Debug\ProjetoBanco.pdb
+C:\Users\Helmuth\source\repos\ProjetoBanco\ProjetoBanco\bin\DnsClient.dll
+C:\Users\Helmuth\source\repos\ProjetoBanco\ProjetoBanco\bin\MongoDB.Bson.dll
+C:\Users\Helmuth\source\repos\ProjetoBanco\ProjetoBanco\bin\MongoDB.Driver.Core.dll
+C:\Users\Helmuth\source\repos\ProjetoBanco\ProjetoBanco\bin\MongoDB.Driver.dll
+C:\Users\Helmuth\source\repos\ProjetoBanco\ProjetoBanco\bin\MongoDB.Driver.Legacy.dll
+C:\Users\Helmuth\source\repos\ProjetoBanco\ProjetoBanco\bin\DnsClient.xml
+C:\Users\Helmuth\source\repos\ProjetoBanco\ProjetoBanco\bin\MongoDB.Bson.xml
+C:\Users\Helmuth\source\repos\ProjetoBanco\ProjetoBanco\bin\MongoDB.Driver.xml
+C:\Users\Helmuth\source\repos\ProjetoBanco\ProjetoBanco\bin\MongoDB.Driver.Core.xml
+C:\Users\Helmuth\source\repos\ProjetoBanco\ProjetoBanco\bin\MongoDB.Driver.Legacy.xml
