@@ -1,0 +1,64 @@
+﻿@model ProjetoBanco.Models.Mongo.Produto_Mongo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Produto_Mongo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tempo_Producao_Minutos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tempo_Producao_Minutos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome_Materia_Principal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome_Materia_Principal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lucro_Producao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lucro_Producao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantidade_Estoque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantidade_Estoque)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

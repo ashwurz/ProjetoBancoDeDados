@@ -10,7 +10,7 @@ namespace ProjetoBanco.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "EM MANUTENÇÃO";
+            //ViewBag.Message = "EM MANUTENÇÃO";
             return View();
         }
 
@@ -23,7 +23,7 @@ namespace ProjetoBanco.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Pagina de Contato :)";
+            ViewBag.Message = "Pagina de Contato";
 
             return View();
         }

@@ -1,0 +1,58 @@
+﻿@model ProjetoBanco.Models.Mongo.Produto_Mongo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Produto_Mongo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tempo_Producao_Minutos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tempo_Producao_Minutos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome_Materia_Principal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome_Materia_Principal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lucro_Producao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lucro_Producao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantidade_Estoque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantidade_Estoque)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { nome = Model.Nome }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

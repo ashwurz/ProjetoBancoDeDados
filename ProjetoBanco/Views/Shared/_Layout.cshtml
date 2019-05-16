@@ -17,21 +17,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    @*<span class="icon-bar"></span>
+                    <span class="icon-bar"></span>*@
                 </button>
                 @Html.ActionLink("Projeto Banco De Dados", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Produtos", "Index", "Produtos")</li>
-                    <li>@Html.ActionLink("Materia Prima", "Index", "MateriaPrima")</li>
+                    @*<li>@Html.ActionLink("Produtos", "Index", "Produtos")</li>
+                    <li>@Html.ActionLink("Materia Prima", "Index", "MateriaPrima")</li>*@
                     @*<li>@Html.ActionLink("Estoque de Materia Prima", "Index", "EstoqueMateriaPrima")</li>
-                      <li>@Html.ActionLink("Estoque de Produtos", "Index", "EstoqueProdutos")</li>*@
-                    <li>@Html.ActionLink("Produtos Finalizados", "Index", "ProdutosFinalizados")</li>
+                     <li>@Html.ActionLink("Estoque de Produtos", "Index", "EstoqueProdutos")</li>*@
+                    <li>@Html.ActionLink("Banco Relacional", "Index", "BancoRelacional")</li>
+                    <li>@Html.ActionLink("Banco NoSQL", "Index", "BancoNoSql")</li>
                     <li>@Html.ActionLink("Sobre", "About", "Home")</li>
                     <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Materia_Prima_Mongo", "Index", "Materia_Prima_Mongo")</li>
+                    @*<li>@Html.ActionLink("Materia_Prima_Mongo", "Index", "Materia_Prima_Mongo")</li>*@
                 </ul>
             </div>
         </div>

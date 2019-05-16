@@ -213,9 +213,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\MongoContext.cs" />
+    <Compile Include="Controllers\BancoNoSqlController.cs" />
+    <Compile Include="Controllers\BancoRelacionalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MateriaPrimaController.cs" />
     <Compile Include="Controllers\Mongo\Materia_Prima_MongoController.cs" />
+    <Compile Include="Controllers\Mongo\Produtos_Finalizados_MongoController.cs" />
+    <Compile Include="Controllers\Mongo\Produto_MongoController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Controllers\ProdutosFinalizadosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -288,9 +292,22 @@
     <Content Include="Views\Materia_Prima_Mongo\Details.cshtml" />
     <Content Include="Views\Materia_Prima_Mongo\Edit.cshtml" />
     <Content Include="Views\Materia_Prima_Mongo\Delete.cshtml" />
+    <Content Include="Views\Produto_Mongo\Index.cshtml" />
+    <Content Include="Views\Produto_Mongo\Details.cshtml" />
+    <Content Include="Views\Produto_Mongo\Create.cshtml" />
+    <Content Include="Views\Produto_Mongo\Edit.cshtml" />
+    <Content Include="Views\Produto_Mongo\Delete.cshtml" />
+    <Content Include="Views\Produtos_Finalizados_Mongo\Index.cshtml" />
+    <Content Include="Views\Produtos_Finalizados_Mongo\Details.cshtml" />
+    <Content Include="Views\Produtos_Finalizados_Mongo\Create.cshtml" />
+    <Content Include="Views\Produtos_Finalizados_Mongo\Edit.cshtml" />
+    <Content Include="Views\Produtos_Finalizados_Mongo\Delete.cshtml" />
+    <Content Include="Views\BancoRelacional\Index.cshtml" />
+    <Content Include="Views\BancoNoSql\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Produtos_Finalizados\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -12,8 +12,9 @@ namespace ProjetoBanco.Models.Mongo
         public int Sequencia_Producao { get; set; }
 
         [BsonElement("Nome")]
-        public List<Produtos> Nome { get; set; }
+        public string Nome { get; set; }
 
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         [BsonElement("Data_Producao")]
         public DateTime Data_Producao { get; set; }
     }
