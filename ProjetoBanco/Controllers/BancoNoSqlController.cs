@@ -25,21 +25,44 @@ namespace ProjetoBanco.Controllers
 
         public ActionResult SelectNoSql()
         {
-            var produtos_Db = _dbContext._database.GetCollection<Produto_Mongo>("Produtos");
-            var materia_Db = _dbContext._database.GetCollection<Materia_Prima_Mongo>("Materia_Prima");
+            var produtos_Db = _dbContext._database.GetCollection<Produto_Mongo>("Produtos").FindAll().ToList();
+            var materia_Db = _dbContext._database.GetCollection<Materia_Prima_Mongo>("Materia_Prima").FindAll().ToList();
 
-            var query = from produtos in produtos_Db.AsQueryable()
-                        join materia in materia_Db.AsQueryable()
-                        on produtos.Nome_Materia_Principal equals materia.Nome
-                        select new SelectResult
-                        {
-                            Nome_Produto = produtos.Nome,
-                            Nome_Materia_Prima = produtos.Nome_Materia_Principal,   
-                            Custo_Producao = materia.Custo,
-                            Lucro_Producao = produtos.Lucro_Producao
-                        };
+            //List<Select_Result_Mongo> result = produtos_Db.Aggregate().ToLookup<Produto_Mongo, Materia_Prima_Mongo, Select_Result_Mongo>(materia_Db,
+            //                                                                                                                             x => x.Nome_Materia_Principal,
+            //                                                                                                                             x => x.Nome);
 
-            var teste = query.ToList();
+            //var query = (from produtos in produtos_Db.AsQueryable()
+            //            join materia in materia_Db.AsQueryable()
+            //            on produtos.Nome_Materia_Principal equals materia.Nome
+            //            select new
+            //            {
+            //                Nome_Produto = produtos.Nome,
+            //                Nome_Materia_Prima = produtos.Nome_Materia_Principal,
+            //                Custo_Producao = materia.Nome,
+            //                Lucro_Producao = produtos.Lucro_Producao
+            //            });
+
+            List<SelectResult> listaTeste = new List<SelectResult>();
+
+            foreach(var produto in produtos_Db)
+            {
+                foreach(var materia in materia_Db)
+                {
+                    if (materia.Nome.Equals(produto.Nome_Materia_Principal))
+                    {
+                        SelectResult teste2 = new SelectResult();
+                        teste2.Nome_Produto = produto.Nome;
+                        teste2.Nome_Materia_Prima = materia.Nome;
+                        teste2.Custo_Producao = materia.Custo;
+                        teste2.Lucro_Producao = produto.Lucro_Producao;
+                        listaTeste.Add(teste2);
+                    }
+                }
+            }
+            
+
+            // var teste = query.ToList();
 
             //List<SelectResult> listaResult = new List<SelectResult>();
 
@@ -54,7 +77,7 @@ namespace ProjetoBanco.Controllers
             //    listaResult.Add(teste);
             //}
 
-            return View(teste);
+            return View(listaTeste);
         }
 
         //// GET: BancoNoSql/Details/5

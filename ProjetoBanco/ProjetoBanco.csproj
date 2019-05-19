@@ -229,6 +229,7 @@
     <Compile Include="Models\Mongo\Materia_Prima_Mongo.cs" />
     <Compile Include="Models\Mongo\Produtos_Finalizados_Mongo.cs" />
     <Compile Include="Models\Mongo\Produto_Mongo.cs" />
+    <Compile Include="Models\Mongo\Select_Result_Mongo.cs" />
     <Compile Include="Models\Produtos.cs" />
     <Compile Include="Models\Produtos_Finalizados.cs" />
     <Compile Include="Context\ProjetoBancoContext.cs" />

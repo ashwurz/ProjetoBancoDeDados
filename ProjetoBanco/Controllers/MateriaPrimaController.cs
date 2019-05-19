@@ -18,7 +18,8 @@ namespace ProjetoBanco.Controllers
         // GET: MateriaPrima
         public ActionResult Index()
         {
-            return View(db.Materia_Prima.ToList());
+            var teste = db.Materia_Prima.OrderByDescending(x => x.Nome).ToList();
+            return View(teste);
         }
 
         // GET: MateriaPrima/Details/5
