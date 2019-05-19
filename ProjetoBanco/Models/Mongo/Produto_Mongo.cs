@@ -24,6 +24,6 @@ namespace ProjetoBanco.Models.Mongo
         [BsonElement("Quantidade_Estoque")]
         public int Quantidade_Estoque { get; set; }
 
-        //public Materia_Prima_Mongo Materia_Prima_Mongo { get; set; }
+        public Materia_Prima_Mongo Materia_Prima_Mongo { get; set; }
     }
 }

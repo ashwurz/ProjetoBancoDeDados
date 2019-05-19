@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ProjetoBanco.Models.SelectResult>
+
+@{
+    ViewBag.Title = "Select NoSql";
+}
+
+<h2>Select NoSql</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome_Produto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome_Materia_Prima)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Custo_Producao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lucro_Producao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome_Produto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome_Materia_Prima)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Custo_Producao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lucro_Producao)
+        </td>
+    </tr>
+}
+
+</table>

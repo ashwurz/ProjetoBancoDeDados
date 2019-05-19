@@ -1,4 +1,8 @@
-﻿using System;
+﻿using MongoDB.Driver.Linq;
+using ProjetoBanco.Context;
+using ProjetoBanco.Models;
+using ProjetoBanco.Models.Mongo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +12,49 @@ namespace ProjetoBanco.Controllers
 {
     public class BancoNoSqlController : Controller
     {
+        MongoContext _dbContext;
+        public BancoNoSqlController()
+        {
+            _dbContext = new MongoContext();
+        }
         // GET: BancoNoSql
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult SelectNoSql()
+        {
+            var produtos_Db = _dbContext._database.GetCollection<Produto_Mongo>("Produtos");
+            var materia_Db = _dbContext._database.GetCollection<Materia_Prima_Mongo>("Materia_Prima");
+
+            var query = from produtos in produtos_Db.AsQueryable()
+                        join materia in materia_Db.AsQueryable()
+                        on produtos.Nome_Materia_Principal equals materia.Nome
+                        select new SelectResult
+                        {
+                            Nome_Produto = produtos.Nome,
+                            Nome_Materia_Prima = produtos.Nome_Materia_Principal,   
+                            Custo_Producao = materia.Custo,
+                            Lucro_Producao = produtos.Lucro_Producao
+                        };
+
+            var teste = query.ToList();
+
+            //List<SelectResult> listaResult = new List<SelectResult>();
+
+            //foreach (var item in querry)
+            //{
+            //    SelectResult teste = new SelectResult();
+            //    teste.Nome_Produto = item.Nome_Produto;
+            //    teste.Nome_Materia_Prima = item.Nome_Materia_Prima;
+            //    teste.Custo_Producao = item.Custo_Producao;
+            //    teste.Lucro_Producao = item.Lucro_Producao;
+
+            //    listaResult.Add(teste);
+            //}
+
+            return View(teste);
         }
 
         //// GET: BancoNoSql/Details/5
