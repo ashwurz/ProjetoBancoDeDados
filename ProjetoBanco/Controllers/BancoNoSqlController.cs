@@ -43,7 +43,7 @@ namespace ProjetoBanco.Controllers
             //                Lucro_Producao = produtos.Lucro_Producao
             //            });
 
-            List<SelectResult> listaTeste = new List<SelectResult>();
+            List<SelectResult> listResult = new List<SelectResult>();
 
             foreach(var produto in produtos_Db)
             {
@@ -51,12 +51,12 @@ namespace ProjetoBanco.Controllers
                 {
                     if (materia.Nome.Equals(produto.Nome_Materia_Principal))
                     {
-                        SelectResult teste2 = new SelectResult();
-                        teste2.Nome_Produto = produto.Nome;
-                        teste2.Nome_Materia_Prima = materia.Nome;
-                        teste2.Custo_Producao = materia.Custo;
-                        teste2.Lucro_Producao = produto.Lucro_Producao;
-                        listaTeste.Add(teste2);
+                        SelectResult result = new SelectResult();
+                        result.Nome_Produto = produto.Nome;
+                        result.Nome_Materia_Prima = materia.Nome;
+                        result.Custo_Producao = materia.Custo;
+                        result.Lucro_Producao = produto.Lucro_Producao;
+                        listResult.Add(result);
                     }
                 }
             }
@@ -77,7 +77,7 @@ namespace ProjetoBanco.Controllers
             //    listaResult.Add(teste);
             //}
 
-            return View(listaTeste);
+            return View(listResult);
         }
 
         //// GET: BancoNoSql/Details/5
