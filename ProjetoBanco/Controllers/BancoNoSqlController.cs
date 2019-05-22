@@ -12,6 +12,8 @@ namespace ProjetoBanco.Controllers
 {
     public class BancoNoSqlController : Controller
     {
+        private ProjetoBancoContext dbRelacional = new ProjetoBancoContext();
+
         MongoContext _dbContext;
         public BancoNoSqlController()
         {
@@ -27,6 +29,7 @@ namespace ProjetoBanco.Controllers
         {
             var produtos_Db = _dbContext._database.GetCollection<Produto_Mongo>("Produtos").FindAll().ToList();
             var materia_Db = _dbContext._database.GetCollection<Materia_Prima_Mongo>("Materia_Prima").FindAll().ToList();
+            var produtosFinalizados_DB = _dbContext._database.GetCollection<Produtos_Finalizados_Mongo>("Produtos_Finalizados").FindAll().ToList();
 
             //List<Select_Result_Mongo> result = produtos_Db.Aggregate().ToLookup<Produto_Mongo, Materia_Prima_Mongo, Select_Result_Mongo>(materia_Db,
             //                                                                                                                             x => x.Nome_Materia_Principal,
@@ -45,22 +48,45 @@ namespace ProjetoBanco.Controllers
 
             List<SelectResult> listResult = new List<SelectResult>();
 
-            foreach(var produto in produtos_Db)
+            //foreach(var produto in produtos_Db)
+            //{
+            //    foreach(var materia in materia_Db)
+            //    {
+            //        if (materia.Nome.Equals(produto.Nome_Materia_Principal))
+            //        {
+            //            SelectResult result = new SelectResult();
+            //            result.Nome_Produto = produto.Nome;
+            //            result.Nome_Materia_Prima = materia.Nome;
+            //            result.Custo_Producao = materia.Custo;
+            //            result.Lucro_Producao = produto.Lucro_Producao;
+            //            listResult.Add(result);
+            //        }
+            //    }
+            //}
+            
+            foreach(var produtosFinalizados in produtosFinalizados_DB)
             {
-                foreach(var materia in materia_Db)
+                foreach(var produtos in produtos_Db)
                 {
-                    if (materia.Nome.Equals(produto.Nome_Materia_Principal))
+                    if (produtos.Nome.Equals(produtosFinalizados.Nome))
                     {
-                        SelectResult result = new SelectResult();
-                        result.Nome_Produto = produto.Nome;
-                        result.Nome_Materia_Prima = materia.Nome;
-                        result.Custo_Producao = materia.Custo;
-                        result.Lucro_Producao = produto.Lucro_Producao;
-                        listResult.Add(result);
+                        foreach(var materia in materia_Db)
+                        {
+                            if (materia.Nome.Equals(produtos.Nome_Materia_Principal))
+                            {
+                                SelectResult result = new SelectResult();
+                                result.Sequencia_Producao = produtosFinalizados.Sequencia_Producao;
+                                result.Nome_Produto = produtos.Nome;
+                                result.Nome_Materia_Prima = materia.Nome;
+                                result.Custo_Producao = materia.Custo;
+                                result.Lucro_Producao = produtos.Lucro_Producao;
+                                result.Data_Producao = produtosFinalizados.Data_Producao;
+                                listResult.Add(result);
+                            }
+                        }
                     }
                 }
             }
-            
 
             // var teste = query.ToList();
 
@@ -78,6 +104,30 @@ namespace ProjetoBanco.Controllers
             //}
 
             return View(listResult);
+        }
+
+        public ActionResult Adicao()
+        {
+            var produtos_Finalizados = dbRelacional.Produtos_Finalizados.ToList();
+
+            var document = _dbContext._database.GetCollection<Produtos_Finalizados_Mongo>("Produtos_Finalizados");
+
+
+
+            foreach(var item in produtos_Finalizados)
+            {
+                Produtos_Finalizados_Mongo teste = new Produtos_Finalizados_Mongo();
+                teste.Sequencia_Producao = item.Sequencia_Producao;
+                teste.Nome = item.Nome;
+                teste.Data_Producao = item.Data_Producao;
+
+                
+                document.Insert(teste);
+            }
+
+            var safe = 1;
+
+            return View();
         }
 
         //// GET: BancoNoSql/Details/5

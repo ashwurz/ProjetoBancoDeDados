@@ -308,6 +308,7 @@
     <Content Include="Views\BancoNoSql\Index.cshtml" />
     <Content Include="Views\BancoRelacional\SelectRelacional.cshtml" />
     <Content Include="Views\BancoNoSql\SelectNoSql.cshtml" />
+    <Content Include="Views\BancoRelacional\AdiçãoDados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

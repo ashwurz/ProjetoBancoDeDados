@@ -9,6 +9,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Sequencia_Producao)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Nome_Produto)
         </th>
         <th>
@@ -20,11 +23,17 @@
         <th>
             @Html.DisplayNameFor(model => model.Lucro_Producao)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_Producao)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
 <tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Sequencia_Producao)
+    </td>
     <td>
         @Html.DisplayFor(modelItem => item.Nome_Produto)
     </td>
@@ -36,6 +45,9 @@
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Lucro_Producao)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Data_Producao)
     </td>
 </tr>
 }
