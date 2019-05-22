@@ -4,7 +4,10 @@ using ProjetoBanco.Models;
 using ProjetoBanco.Models.Mongo;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,7 +15,7 @@ namespace ProjetoBanco.Controllers
 {
     public class BancoNoSqlController : Controller
     {
-        private ProjetoBancoContext dbRelacional = new ProjetoBancoContext();
+        //private ProjetoBancoContext dbRelacional = new ProjetoBancoContext();
 
         MongoContext _dbContext;
         public BancoNoSqlController()
@@ -26,6 +29,77 @@ namespace ProjetoBanco.Controllers
         }
 
         public ActionResult SelectNoSql()
+        {
+            return View();
+        }
+
+        public ActionResult Arquivo()
+        {
+            Stopwatch relogio = new Stopwatch();
+            
+
+            var produtos_Db = _dbContext._database.GetCollection<Produto_Mongo>("Produtos").FindAll().ToList();
+            var materia_Db = _dbContext._database.GetCollection<Materia_Prima_Mongo>("Materia_Prima").FindAll().ToList();
+            var produtosFinalizados_DB = _dbContext._database.GetCollection<Produtos_Finalizados_Mongo>("Produtos_Finalizados").FindAll().ToList();
+
+            List<SelectResult> listResult = new List<SelectResult>();
+
+            relogio.Start();
+            foreach (var produtosFinalizados in produtosFinalizados_DB)
+            {
+                foreach (var produtos in produtos_Db)
+                {
+                    if (produtos.Nome.Equals(produtosFinalizados.Nome))
+                    {
+                        foreach (var materia in materia_Db)
+                        {
+                            if (materia.Nome.Equals(produtos.Nome_Materia_Principal))
+                            {
+                                SelectResult result = new SelectResult();
+                                result.Sequencia_Producao = produtosFinalizados.Sequencia_Producao;
+                                result.Nome_Produto = produtos.Nome;
+                                result.Nome_Materia_Prima = materia.Nome;
+                                result.Custo_Producao = materia.Custo;
+                                result.Lucro_Producao = produtos.Lucro_Producao;
+                                result.Data_Producao = produtosFinalizados.Data_Producao;
+                                listResult.Add(result);
+                            }
+                        }
+                    }
+                }
+            }
+            relogio.Stop();
+
+            ViewBag.Relogio = relogio.Elapsed;
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (int i = 0; i < listResult.Count(); i++)
+            {
+                stringBuilder.Append(listResult[i].Sequencia_Producao.ToString());
+                stringBuilder.Append("||");
+                stringBuilder.Append(listResult[i].Nome_Produto);
+                stringBuilder.Append("||");
+                stringBuilder.Append(listResult[i].Nome_Materia_Prima);
+                stringBuilder.Append("||");
+                stringBuilder.Append(listResult[i].Custo_Producao);
+                stringBuilder.Append("||");
+                stringBuilder.Append(listResult[i].Lucro_Producao);
+                stringBuilder.Append("||");
+                stringBuilder.Append(listResult[i].Data_Producao.ToString());
+                stringBuilder.Append(Environment.NewLine);
+            }
+
+            using (StreamWriter writer = new StreamWriter(@"D:\SelectResult\Select_NoSQL.txt"))
+            {
+                writer.Write(stringBuilder);
+            }
+
+
+            return View("SelectNoSql");
+        }
+
+        public ActionResult Browser()
         {
             var produtos_Db = _dbContext._database.GetCollection<Produto_Mongo>("Produtos").FindAll().ToList();
             var materia_Db = _dbContext._database.GetCollection<Materia_Prima_Mongo>("Materia_Prima").FindAll().ToList();
@@ -47,22 +121,6 @@ namespace ProjetoBanco.Controllers
             //            });
 
             List<SelectResult> listResult = new List<SelectResult>();
-
-            //foreach(var produto in produtos_Db)
-            //{
-            //    foreach(var materia in materia_Db)
-            //    {
-            //        if (materia.Nome.Equals(produto.Nome_Materia_Principal))
-            //        {
-            //            SelectResult result = new SelectResult();
-            //            result.Nome_Produto = produto.Nome;
-            //            result.Nome_Materia_Prima = materia.Nome;
-            //            result.Custo_Producao = materia.Custo;
-            //            result.Lucro_Producao = produto.Lucro_Producao;
-            //            listResult.Add(result);
-            //        }
-            //    }
-            //}
             
             foreach(var produtosFinalizados in produtosFinalizados_DB)
             {
@@ -88,47 +146,30 @@ namespace ProjetoBanco.Controllers
                 }
             }
 
-            // var teste = query.ToList();
-
-            //List<SelectResult> listaResult = new List<SelectResult>();
-
-            //foreach (var item in querry)
-            //{
-            //    SelectResult teste = new SelectResult();
-            //    teste.Nome_Produto = item.Nome_Produto;
-            //    teste.Nome_Materia_Prima = item.Nome_Materia_Prima;
-            //    teste.Custo_Producao = item.Custo_Producao;
-            //    teste.Lucro_Producao = item.Lucro_Producao;
-
-            //    listaResult.Add(teste);
-            //}
-
             return View(listResult);
         }
 
-        public ActionResult Adicao()
-        {
-            var produtos_Finalizados = dbRelacional.Produtos_Finalizados.ToList();
+        //public ActionResult Adicao()
+        //{
+        //    var produtos_Finalizados = dbRelacional.Produtos_Finalizados.ToList();
 
-            var document = _dbContext._database.GetCollection<Produtos_Finalizados_Mongo>("Produtos_Finalizados");
+        //    var document = _dbContext._database.GetCollection<Produtos_Finalizados_Mongo>("Produtos_Finalizados");
 
 
 
-            foreach(var item in produtos_Finalizados)
-            {
-                Produtos_Finalizados_Mongo teste = new Produtos_Finalizados_Mongo();
-                teste.Sequencia_Producao = item.Sequencia_Producao;
-                teste.Nome = item.Nome;
-                teste.Data_Producao = item.Data_Producao;
+        //    foreach(var item in produtos_Finalizados)
+        //    {
+        //        Produtos_Finalizados_Mongo teste = new Produtos_Finalizados_Mongo();
+        //        teste.Sequencia_Producao = item.Sequencia_Producao;
+        //        teste.Nome = item.Nome;
+        //        teste.Data_Producao = item.Data_Producao;
 
                 
-                document.Insert(teste);
-            }
+        //        document.Insert(teste);
+        //    }
 
-            var safe = 1;
-
-            return View();
-        }
+        //    return View();
+        //}
 
         //// GET: BancoNoSql/Details/5
         //public ActionResult Details(int id)

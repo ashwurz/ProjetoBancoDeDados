@@ -1,57 +1,20 @@
-﻿@model IEnumerable<ProjetoBanco.Models.SelectResult>
-
+﻿
 @{
     ViewBag.Title = "Select NoSql";
 }
 
-<h2>Select NoSql</h2>
+<h2>SelectNoSql</h2>
+<p>Tempo de execução da Query MongoDB: @ViewBag.Relogio</p>
+<div class="row">
+    <div class="col-md-6">
+        <h3>Exibição via arquivo</h3>
+        @*<p>Explicar os atributos deste entidade</p>*@
+        <p><a class="btn btn-default" href="http://localhost:57831/BancoNoSql\Arquivo">Arquivo &raquo;</a></p>
+    </div>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Sequencia_Producao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome_Produto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome_Materia_Prima)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Custo_Producao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lucro_Producao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Data_Producao)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Sequencia_Producao)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Nome_Produto)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Nome_Materia_Prima)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Custo_Producao)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Lucro_Producao)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Data_Producao)
-    </td>
-</tr>
-}
-
-</table>
-
-<p><a class="btn btn-default" href="http://localhost:57831/BancoNoSql">Voltar </a></p>
+    <div class="col-md-6">
+        <h3>Exibição via browser</h3>
+        @*<p>Explicar os atributos deste entidade</p>*@
+        <p><a class="btn btn-default" href="http://localhost:57831/BancoNoSql\Browser">Browser &raquo;</a></p>
+    </div>
+</div>

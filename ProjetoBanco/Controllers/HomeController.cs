@@ -16,7 +16,7 @@ namespace ProjetoBanco.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Essa é uma aplicação do Grupo 4 da Matéria Banco de Dados - CC5232";
+            //ViewBag.Message = "Essa é uma aplicação do Grupo 4 da Matéria Banco de Dados - CC5232";
 
             return View();
         }

@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using System.IO;
+using System.Text;
+using System.Diagnostics;
 
 namespace ProjetoBanco.Controllers
 {
@@ -21,40 +23,92 @@ namespace ProjetoBanco.Controllers
 
         public ActionResult SelectRelacional()
         {
-            var query = (from produtos_finalizados in db.Produtos_Finalizados
-                          join produtos in db.Produtos on produtos_finalizados.Nome equals produtos.Nome
-                          join materia in db.Materia_Prima on produtos.Nome_Materia_Principal equals materia.Nome
-                          select new SelectResult
-                          {
-                              Sequencia_Producao = produtos_finalizados.Sequencia_Producao,
-                              Nome_Produto = produtos.Nome,
-                              Nome_Materia_Prima = produtos.Nome_Materia_Principal,
-                              Custo_Producao = materia.Custo,
-                              Lucro_Producao = produtos.Lucro_Producao,
-                              Data_Producao = produtos_finalizados.Data_Producao
-                          }).ToList();
+            //var query = (from produtos_finalizados in db.Produtos_Finalizados
+            //              join produtos in db.Produtos on produtos_finalizados.Nome equals produtos.Nome
+            //              join materia in db.Materia_Prima on produtos.Nome_Materia_Principal equals materia.Nome
+            //              orderby(materia.Nome)
+            //              select new SelectResult
+            //              {
+            //                  Sequencia_Producao = produtos_finalizados.Sequencia_Producao,
+            //                  Nome_Produto = produtos.Nome,
+            //                  Nome_Materia_Prima = produtos.Nome_Materia_Principal,
+            //                  Custo_Producao = materia.Custo,
+            //                  Lucro_Producao = produtos.Lucro_Producao,
+            //                  Data_Producao = produtos_finalizados.Data_Producao
+            //              }).ToList();
 
-            //List<SelectResult> listaResult = new List<SelectResult>();
-
-            //foreach (var item in querry)
-            //{
-            //    SelectResult teste = new SelectResult();
-            //    teste.Nome_Produto = item.Nome_Produto;
-            //    teste.Nome_Materia_Prima = item.Nome_Materia_Prima;
-            //    teste.Custo_Producao = item.Custo_Producao;
-            //    teste.Lucro_Producao = item.Lucro_Producao;
-
-            //    listaResult.Add(teste);
-            //}
-
-            return View(query);
+            return View();
         }
 
-        public ActionResult TesteExcel()
+        public ActionResult Arquivo()
         {
+            Stopwatch relogio = new Stopwatch();
+            relogio.Start();
+            var query = (from produtos_finalizados in db.Produtos_Finalizados
+                         join produtos in db.Produtos on produtos_finalizados.Nome equals produtos.Nome
+                         join materia in db.Materia_Prima on produtos.Nome_Materia_Principal equals materia.Nome
+                         //orderby (materia.Nome)
+                         select new SelectResult
+                         {
+                             Sequencia_Producao = produtos_finalizados.Sequencia_Producao,
+                             Nome_Produto = produtos.Nome,
+                             Nome_Materia_Prima = produtos.Nome_Materia_Principal,
+                             Custo_Producao = materia.Custo,
+                             Lucro_Producao = produtos.Lucro_Producao,
+                             Data_Producao = produtos_finalizados.Data_Producao
+                         }).ToList();
+            relogio.Stop();
+
+            ViewBag.Relogio = relogio.Elapsed;
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for(int i = 0; i < query.Count(); i++)
+            {
+                stringBuilder.Append(query[i].Sequencia_Producao.ToString());
+                stringBuilder.Append("||");
+                stringBuilder.Append(query[i].Nome_Produto);
+                stringBuilder.Append("||");
+                stringBuilder.Append(query[i].Nome_Materia_Prima);
+                stringBuilder.Append("||");
+                stringBuilder.Append(query[i].Custo_Producao);
+                stringBuilder.Append("||");
+                stringBuilder.Append(query[i].Lucro_Producao);
+                stringBuilder.Append("||");
+                stringBuilder.Append(query[i].Data_Producao.ToString());
+                stringBuilder.Append(Environment.NewLine);
+            }
+            using(StreamWriter writer = new StreamWriter(@"D:\SelectResult\Select_Relacional.txt"))
+            {
+                writer.Write(stringBuilder);
+            }
+
+            return View("SelectRelacional");
+        }
+
+        public ActionResult Browser()
+        {
+            Stopwatch relogio = new Stopwatch();
+            relogio.Start();
+            var query = (from produtos_finalizados in db.Produtos_Finalizados
+                         join produtos in db.Produtos on produtos_finalizados.Nome equals produtos.Nome
+                         join materia in db.Materia_Prima on produtos.Nome_Materia_Principal equals materia.Nome
+                         orderby (materia.Nome)
+                         select new SelectResult
+                         {
+                             Sequencia_Producao = produtos_finalizados.Sequencia_Producao,
+                             Nome_Produto = produtos.Nome,
+                             Nome_Materia_Prima = produtos.Nome_Materia_Principal,
+                             Custo_Producao = materia.Custo,
+                             Lucro_Producao = produtos.Lucro_Producao,
+                             Data_Producao = produtos_finalizados.Data_Producao
+                         }).ToList();
+            relogio.Stop();
+
+            ViewBag.Relogio = relogio.Elapsed;
 
 
-            return View("Index");
+            return View(query);
         }
 
         public ActionResult AdicaoDados()
@@ -69,18 +123,6 @@ namespace ProjetoBanco.Controllers
 
             List<Produtos_Finalizados> teste5 = new List<Produtos_Finalizados>();
 
-            //for(int i = 0; i < teste; i++)
-            //{
-            //    Produtos_Finalizados teste2 = new Produtos_Finalizados();
-            //    var teste3 = random.Next(0,19);
-            //    var teste4 = produtos[teste3];
-            //    teste2.Sequencia_Producao = i + 1;
-            //    teste2.Nome = teste4.Nome;
-            //    teste2.Data_Producao = DateTime.Now;
-
-            //    db.Produtos_Finalizados.Add(teste2);
-            //    db.SaveChanges();
-            //}
             int contador = 0;
 
             foreach(var item in gambiarra)
