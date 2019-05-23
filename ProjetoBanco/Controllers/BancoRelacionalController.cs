@@ -63,7 +63,20 @@ namespace ProjetoBanco.Controllers
 
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int i = 0; i < query.Count(); i++)
+            stringBuilder.Append("Sequencia_Producao");
+            stringBuilder.Append("||");
+            stringBuilder.Append("Nome_Produto");
+            stringBuilder.Append("||");
+            stringBuilder.Append("Nome_Materia_Prima");
+            stringBuilder.Append("||");
+            stringBuilder.Append("Custo_Producao");
+            stringBuilder.Append("||");
+            stringBuilder.Append("Lucro_Producao");
+            stringBuilder.Append("||");
+            stringBuilder.Append("Data_Producao");
+            stringBuilder.Append(Environment.NewLine);
+
+            for (int i = 0; i < query.Count(); i++)
             {
                 stringBuilder.Append(query[i].Sequencia_Producao.ToString());
                 stringBuilder.Append("||");

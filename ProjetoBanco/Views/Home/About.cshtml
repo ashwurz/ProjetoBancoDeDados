@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Sobre";
 }
-<h2>@ViewBag.Title</h2>
+<h2>Informações sobre a Modelagem do banco</h2>
 
 <div class="row">
     <div class="col-md-12">
@@ -15,5 +15,19 @@
         @*<p>Explicar os atributos deste entidade</p>*@
         <img src="~/Images/MER.jpeg" width="80%" height="80%" alt="MER"/>
     </div>
+</div>
+<div>
+
+    <h3>Regras do negócio:</h3>
+
+    <ul>
+        <li>O atributo Nome pertencente a entidade Materia_Prima e é uma chave primária;</li>
+        <li>O atributo Nome pertencente a entidade Produtos e é uma chave primária;</li>
+        <li>O atributo Nome_Materia_Principal pertencente a entidade Produtos é uma chave estrangeira que faz referencia ao atributo Nome da entidade Materia_Prima;</li>
+        <li>O atributo Sequecia_Producao pertencente a entidade Produtos_Finalizados é uma chave primária;</li>
+        <li>
+            O atributo Nome pertencente a entidade Produtos_Finalizados é uma chave estrangeira que faz referencia ao atributo Nome da entidade Produtos.
+        </li>
+    </ul>
 </div>
 
