@@ -10,20 +10,20 @@ namespace ProjetoBanco.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "EM MANUTENÇÃO";
+            //ViewBag.Message = "EM MANUTENÇÃO";
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Essa é uma aplicação do Grupo 4 da Matéria Banco de Dados - CC5232";
+            //ViewBag.Message = "Essa é uma aplicação do Grupo 4 da Matéria Banco de Dados - CC5232";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Pagina de Contato :)";
+            ViewBag.Message = "Pagina de Contato";
 
             return View();
         }

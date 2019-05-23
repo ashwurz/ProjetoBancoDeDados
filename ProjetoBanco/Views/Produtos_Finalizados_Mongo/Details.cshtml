@@ -1,0 +1,42 @@
+﻿@model ProjetoBanco.Models.Mongo.Produtos_Finalizados_Mongo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Produtos_Finalizados_Mongo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sequencia_Producao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sequencia_Producao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_Producao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_Producao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Sequencia_Producao }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
