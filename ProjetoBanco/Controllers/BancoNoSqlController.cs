@@ -36,57 +36,80 @@ namespace ProjetoBanco.Controllers
         public ActionResult Arquivo()
         {
             Stopwatch relogio = new Stopwatch();
-            
 
             var produtos_Db = _dbContext._database.GetCollection<Produto_Mongo>("Produtos").FindAll().ToList();
             var materia_Db = _dbContext._database.GetCollection<Materia_Prima_Mongo>("Materia_Prima").FindAll().ToList();
             var produtosFinalizados_DB = _dbContext._database.GetCollection<Produtos_Finalizados_Mongo>("Produtos_Finalizados").FindAll().ToList();
 
-            List<SelectResult> listResult = new List<SelectResult>();
-
+            //List<SelectResult> listResult = new List<SelectResult>();
+            //foreach (var produtosFinalizados in produtosFinalizados_DB)
+            //{
+            //    foreach (var produtos in produtos_Db)
+            //    {
+            //        if (produtos.Nome.Equals(produtosFinalizados.Nome))
+            //        {
+            //            foreach (var materia in materia_Db)
+            //            {
+            //                if (materia.Nome.Equals(produtos.Nome_Materia_Principal))
+            //                {
+            //                    SelectResult result = new SelectResult();
+            //                    result.Sequencia_Producao = produtosFinalizados.Sequencia_Producao;
+            //                    result.Nome_Produto = produtos.Nome;
+            //                    result.Nome_Materia_Prima = materia.Nome;
+            //                    result.Custo_Producao = materia.Custo;
+            //                    result.Lucro_Producao = produtos.Lucro_Producao;
+            //                    result.Data_Producao = produtosFinalizados.Data_Producao;
+            //                    listResult.Add(result);
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
             relogio.Start();
-            foreach (var produtosFinalizados in produtosFinalizados_DB)
-            {
-                foreach (var produtos in produtos_Db)
-                {
-                    if (produtos.Nome.Equals(produtosFinalizados.Nome))
-                    {
-                        foreach (var materia in materia_Db)
-                        {
-                            if (materia.Nome.Equals(produtos.Nome_Materia_Principal))
-                            {
-                                SelectResult result = new SelectResult();
-                                result.Sequencia_Producao = produtosFinalizados.Sequencia_Producao;
-                                result.Nome_Produto = produtos.Nome;
-                                result.Nome_Materia_Prima = materia.Nome;
-                                result.Custo_Producao = materia.Custo;
-                                result.Lucro_Producao = produtos.Lucro_Producao;
-                                result.Data_Producao = produtosFinalizados.Data_Producao;
-                                listResult.Add(result);
-                            }
-                        }
-                    }
-                }
-            }
+            var query = (from produtos_finalizados in produtosFinalizados_DB.AsQueryable()
+                         join produtos in produtos_Db.AsQueryable() on produtos_finalizados.Nome equals produtos.Nome
+                         join materia in materia_Db.AsQueryable() on produtos.Nome_Materia_Principal equals materia.Nome
+                         select new SelectResult
+                         {
+                             Sequencia_Producao = produtos_finalizados.Sequencia_Producao,
+                             Nome_Produto = produtos.Nome,
+                             Nome_Materia_Prima = produtos.Nome_Materia_Principal,
+                             Custo_Producao = materia.Custo,
+                             Lucro_Producao = produtos.Lucro_Producao,
+                             Data_Producao = produtos_finalizados.Data_Producao
+                         }).ToList();
             relogio.Stop();
 
             ViewBag.Relogio = relogio.Elapsed;
 
             StringBuilder stringBuilder = new StringBuilder();
 
-            for (int i = 0; i < listResult.Count(); i++)
+            stringBuilder.Append("Sequencia_Producao");
+            stringBuilder.Append("||");
+            stringBuilder.Append("Nome_Produto");
+            stringBuilder.Append("||");
+            stringBuilder.Append("Nome_Materia_Prima");
+            stringBuilder.Append("||");
+            stringBuilder.Append("Custo_Producao");
+            stringBuilder.Append("||");
+            stringBuilder.Append("Lucro_Producao");
+            stringBuilder.Append("||");
+            stringBuilder.Append("Data_Producao");
+            stringBuilder.Append(Environment.NewLine);
+
+            for (int i = 0; i < query.Count(); i++)
             {
-                stringBuilder.Append(listResult[i].Sequencia_Producao.ToString());
+                stringBuilder.Append(query[i].Sequencia_Producao.ToString());
                 stringBuilder.Append("||");
-                stringBuilder.Append(listResult[i].Nome_Produto);
+                stringBuilder.Append(query[i].Nome_Produto);
                 stringBuilder.Append("||");
-                stringBuilder.Append(listResult[i].Nome_Materia_Prima);
+                stringBuilder.Append(query[i].Nome_Materia_Prima);
                 stringBuilder.Append("||");
-                stringBuilder.Append(listResult[i].Custo_Producao);
+                stringBuilder.Append(query[i].Custo_Producao);
                 stringBuilder.Append("||");
-                stringBuilder.Append(listResult[i].Lucro_Producao);
+                stringBuilder.Append(query[i].Lucro_Producao);
                 stringBuilder.Append("||");
-                stringBuilder.Append(listResult[i].Data_Producao.ToString());
+                stringBuilder.Append(query[i].Data_Producao.ToString());
                 stringBuilder.Append(Environment.NewLine);
             }
 
