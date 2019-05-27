@@ -23,20 +23,6 @@ namespace ProjetoBanco.Controllers
 
         public ActionResult SelectRelacional()
         {
-            //var query = (from produtos_finalizados in db.Produtos_Finalizados
-            //              join produtos in db.Produtos on produtos_finalizados.Nome equals produtos.Nome
-            //              join materia in db.Materia_Prima on produtos.Nome_Materia_Principal equals materia.Nome
-            //              orderby(materia.Nome)
-            //              select new SelectResult
-            //              {
-            //                  Sequencia_Producao = produtos_finalizados.Sequencia_Producao,
-            //                  Nome_Produto = produtos.Nome,
-            //                  Nome_Materia_Prima = produtos.Nome_Materia_Principal,
-            //                  Custo_Producao = materia.Custo,
-            //                  Lucro_Producao = produtos.Lucro_Producao,
-            //                  Data_Producao = produtos_finalizados.Data_Producao
-            //              }).ToList();
-
             return View();
         }
 
@@ -47,7 +33,6 @@ namespace ProjetoBanco.Controllers
             var query = (from produtos_finalizados in db.Produtos_Finalizados
                          join produtos in db.Produtos on produtos_finalizados.Nome equals produtos.Nome
                          join materia in db.Materia_Prima on produtos.Nome_Materia_Principal equals materia.Nome
-                         //orderby (materia.Nome)
                          select new SelectResult
                          {
                              Sequencia_Producao = produtos_finalizados.Sequencia_Producao,
@@ -106,6 +91,7 @@ namespace ProjetoBanco.Controllers
                              Lucro_Producao = produtos.Lucro_Producao,
                              Data_Producao = produtos_finalizados.Data_Producao
                          }).ToList();
+
             relogio.Stop();
 
             ViewBag.Relogio = relogio.Elapsed;
@@ -152,89 +138,8 @@ namespace ProjetoBanco.Controllers
 
                 }
             }
-            
-
-
             var produtos_Finalizados = db.Produtos_Finalizados.ToList();
             return View(produtos_Finalizados);
         }
-
-        //[HttpPost]
-        //public ActionResult SelectRelacional(string gambiarra)
-        //{
-        //    return View("Index");
-        //}
-
-        //// GET: BancoRelacional/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
-
-        //// GET: BancoRelacional/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        //// POST: BancoRelacional/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: BancoRelacional/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: BancoRelacional/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: BancoRelacional/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: BancoRelacional/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }
