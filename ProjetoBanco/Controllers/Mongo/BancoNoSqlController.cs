@@ -11,7 +11,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ProjetoBanco.Controllers
+namespace ProjetoBanco.Controllers.Mongo
 {
     public class BancoNoSqlController : Controller
     {

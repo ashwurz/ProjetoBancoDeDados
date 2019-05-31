@@ -217,7 +217,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\MongoContext.cs" />
-    <Compile Include="Controllers\BancoNoSqlController.cs" />
+    <Compile Include="Controllers\Mongo\BancoNoSqlController.cs" />
     <Compile Include="Controllers\BancoRelacionalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MateriaPrimaController.cs" />

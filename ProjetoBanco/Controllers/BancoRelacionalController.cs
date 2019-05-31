@@ -99,47 +99,5 @@ namespace ProjetoBanco.Controllers
 
             return View(query);
         }
-
-        public ActionResult AdicaoDados()
-        {
-            Random random = new Random();
-
-            var produtos = db.Produtos.ToList();
-
-            int teste = 300000;
-
-            string[] gambiarra = new string[teste];
-
-            List<Produtos_Finalizados> teste5 = new List<Produtos_Finalizados>();
-
-            int contador = 0;
-
-            foreach(var item in gambiarra)
-            {
-                Produtos_Finalizados teste2 = new Produtos_Finalizados();
-                var teste3 = random.Next(0, 19);
-                var teste4 = produtos[teste3];
-                teste2.Sequencia_Producao = 1;
-                teste2.Nome = teste4.Nome;
-                teste2.Data_Producao = DateTime.Now;
-
-                teste5.Add(teste2);
-                contador++;
-
-                if (contador == 10000)
-                {
-                    db.Produtos_Finalizados.AddRange(teste5);
-
-                    db.SaveChanges();
-
-                    teste5.Clear();
-
-                    contador = 0;
-
-                }
-            }
-            var produtos_Finalizados = db.Produtos_Finalizados.ToList();
-            return View(produtos_Finalizados);
-        }
     }
 }
